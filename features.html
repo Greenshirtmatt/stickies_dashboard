@@ -46,12 +46,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12 main">
-          <h1 class="page-header">Stickies Strategic Dashboard: Users</h1>
+          <h1 class="page-header">Stickies Strategic Dashboard: Features</h1>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 ">
-              <canvas id="new-users"></canvas>
-              <h4><span style="color: rgba(151,187,205,1)">New Users</span> & <span style="color: rgba(77,83,96,1)">Daily Active Board Viewers</span></h4>
-              <span class="text-muted">Trailing 30 days</span>
+              <canvas id="feature-use"></canvas>
+              <h4><span style="color: rgba(151,187,205,1)">Percentage of users that use each feature</span></h4>
+              <span class="label label-info">NOTE:</span><span class="text-muted"> Cleanup and Conceal are available only to Board Creators. Trailing 30 days</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-center">
               <canvas id="chart-area"/></canvas>
@@ -207,74 +207,28 @@
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script>
 
-    var doughnutData = [
-        {
-          value: 18,
-          color:"#F7464A",
-          highlight: "#FF5A5E",
-          label: "Google"
-        },
-        {
-          value: 17,
-          color: "#46BFBD",
-          highlight: "#5AD3D1",
-          label: "Blog"
-        },
-        {
-          value: 10,
-          color: "#FDB45C",
-          highlight: "#FFC870",
-          label: "Smashing Mag"
-        },
-        {
-          value: 5,
-          color: "#949FB1",
-          highlight: "#A8B3C5",
-          label: "Twitter"
-        },
-        {
-          value: 16,
-          color: "#4D5360",
-          highlight: "#616774",
-          label: "Other"
-        }
+        var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+        var barChartData = {
+        labels : ["Cleanup","Conceal","Download","Log Out"],
+        datasets : [
+          {
+            fillColor : "rgba(151,187,205,0.5)",
+            strokeColor : "rgba(151,187,205,0.8)",
+            highlightFill : "rgba(151,187,205,0.75)",
+            highlightStroke : "rgba(151,187,205,1)",
+            data : [66, 62, 8.8, 6.8]
+          }
+        ]
 
-      ];
+      }
 
-      var newUsersLineChartData = {
-      labels : [ "Jan 11", "Jan 12", "Jan 13", "Jan 14", "Jan 15", "Jan 16", "Jan 17", "Jan 18", "Jan 19", "Jan 20", "Jan 21", "Jan 22", "Jan 23", "Jan 24", "Jan 25", "Jan 26", "Jan 27", "Jan 28", "Jan 29", "Jan 30", "Jan 31", "Feb 01", "Feb 02", "Feb 03", "Feb 04", "Feb 05", "Feb 06", "Feb 07", "Feb 08", "Feb 09", "Feb 10"],
-      datasets : [
-      {
-            label: "Daily Active Board Users",
-            fillColor : "rgba(220,220,220,0.2)",
-            strokeColor : "rgba(77,83,96,1)",
-            pointColor : "rgba(220,220,220,1)",
-            pointStrokeColor : "#fff",
-            pointHighlightFill : "#fff",
-            pointHighlightStroke : "rgba(220,220,220,1)",
-            data : [5,26,18,35,22,68,2,5,8,37,25,54,79,3,4,29,34,25,47,76,5,6,44,34,55,40,84,2,4,52,31]
-          },
-        {
-          label: "New Users",
-          fillColor : "rgba(151,187,205,0.2)",
-          strokeColor : "rgba(151,187,205,1)",
-          pointColor : "rgba(151,187,205,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(151,187,205,1)",
-          data : [3,14,11,32,11,29,2,1,4,21,10,22,31,2,2,8,24,6,11,32,1,5,27,24,37,28,35,4,4,15,12]
-        }
-      ]
-
-    }
-
+      
       window.onload = function(){
-        var ctx = document.getElementById("chart-area").getContext("2d");
-        window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true, scaleShowValues: true });
-        var ctx2 = document.getElementById("new-users").getContext("2d");
-        window.myLine = new Chart(ctx2).Line(newUsersLineChartData, {
-          responsive: true, pointDot : false, bezierCurveTension : 0,
-        });
+        
+        var ctx = document.getElementById("feature-use").getContext("2d");
+          window.myBar = new Chart(ctx).Bar(barChartData, {
+            responsive : true
+          });
       };
 
 
