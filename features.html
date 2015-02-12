@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="imgs/favicon.ico">
+
+    <title>Stickies Strategic Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="js/Chart.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">   
+          <a class="navbar-brand" href="index.html">Stickies.io</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="features.html">Feature Audit</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 main">
+          <h1 class="page-header">Stickies Strategic Dashboard: Features</h1>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+              <canvas id="feature-use"></canvas>
+              <h4><span style="color: rgba(151,187,205,1)">Percentage of users that use each feature</span></h4>
+              <span class="label label-info">NOTE:</span><span class="text-muted"> Cleanup and Conceal are available only to Board Creators. Data from January.</span>
+            </div>
+          </div>
+          <div class="row">
+            
+              <div class="col-sm-4">
+                <h2 class="sub-header">Observations</h2>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <h4 class="list-group-item-heading">Board Creators Use Clean Up and Conceal</h4>
+                    <p class="list-group-item-text">Out of 56 users that created a board in January, 23% used the Clean Up feature while 27% used the Conceal feature.</p>
+                  </div>
+                </div>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <h4 class="list-group-item-heading">Sticky colors are important</h4>
+                    <p class="list-group-item-text">Almost half (42%) of the 316 board viewers from January changed the color of a sticky.</p>
+                  </div>
+                </div>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <h4 class="list-group-item-heading">Users highlight other user's stickies</h4>
+                    <p class="list-group-item-text">About a third of the users click to reveal another users stickies.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <h2 class="sub-header">Insights</h2>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <h4 class="list-group-item-heading">Clean Up and Conceal are helpful, but...</h4>
+                    <p class="list-group-item-text">I don't have anything to compare this to, but the fact that about one of every four board creators are using a feature suggests that they're helpful. However, this glass is only half full. I wonder why only a quarter of our board creators use these features?</p>
+                  </div>
+                </div>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <h4 class="list-group-item-heading">Comparing the location on the page</h4>
+                    <p class="list-group-item-text">Clean Up and Conceal are on the right side of the page while Show Other's Notes is on the left side of the page. The latter has slightly more usage, and I wonder if this is due to the location? Or maybe because users don't know what the buttons for Cleaup Up and Conceal mean?</p>
+                  </div>
+                </div>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <h4 class="list-group-item-heading">Why do users download their data?</h4>
+                    <p class="list-group-item-text">A large enough number of users download their data that we should ask them why. What do they do with the CSV? Is that a feature we could provide?</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <h2 class="sub-header">Recommended Actions</h2>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <h4 class="list-group-item-heading">User interviews!</h4>
+                    <p class="list-group-item-text">All of my insights are questions, and all of those questions could be resolved by talking with users outside of Carbon Five. Their answers will potentially guide us to make stickies more valuable, enhance usability, and increase feature usage.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+
+        var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+        var barChartData = {
+        labels : ["Wrote on Sticky","Cleanup","Conceal","Changed Sticky Color","Show Other's Stickies", "Download","Log Out"],
+        datasets : [
+          {
+            fillColor : "rgba(151,187,205,0.5)",
+            strokeColor : "rgba(151,187,205,0.8)",
+            highlightFill : "rgba(151,187,205,0.75)",
+            highlightStroke : "rgba(151,187,205,1)",
+            data : [73, 23, 27, 42, 30, 22, 13]
+          }
+        ]
+
+      }
+
+      
+      window.onload = function(){
+        
+        var ctx = document.getElementById("feature-use").getContext("2d");
+          window.myBar = new Chart(ctx).Bar(barChartData, {
+            responsive : true
+          });
+      };
+
+
+
+  </script>
+  
+
+  
+  </body>
+</html>
