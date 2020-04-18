@@ -21,6 +21,8 @@
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="js/Chart.js"></script>
+    <!-- Load Stripe.js on your website. -->
+    <script src="https://js.stripe.com/v3"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,6 +40,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="features.html">Feature Audit</a></li>
+             <li><a href="success.html">Success</a></li>
           </ul>
         </div>
       </div>
@@ -47,7 +50,7 @@
       <div class="row">
         <div class="col-sm-12 main">
           <h1 class="page-header">Stickies Strategic Dashboard: Users</h1>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 ">
               <canvas id="new-users"></canvas>
               <h4><span style="color: rgba(151,187,205,1)">New Users</span> & <span style="color: rgba(77,83,96,1)">Daily Active Board Viewers</span></h4>
@@ -58,12 +61,11 @@
               <h4>New User Source</h4>
               <span style="color: #F7464A">Google</span><span style="color: #46BFBD"> Blog</span><span style="color: #FDB45C"> Smashing Mag</span><span style="color: #949FB1"> Twitter</span><span style="color: #4D5360"> Other</span>
             </div>
-          </div>
+          </div> -->
 
           <div class="row">
             <h4>Stripe</h4>
-            <!-- Load Stripe.js on your website. -->
-              <script src="https://js.stripe.com/v3"></script>
+          
 
               <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
               <button
@@ -75,40 +77,9 @@
               </button>
 
               <div id="error-message"></div>
-
-              <script>
-              (function() {
-                var stripe = Stripe('pk_test_M2H9kB3p8bVuGejFYA8sp0GQ00B7diSyN8');
-
-                var checkoutButton = document.getElementById('checkout-button-sku_H7IzwIEzlIgqWY');
-                checkoutButton.addEventListener('click', function () {
-                  // When the customer clicks on the button, redirect
-                  // them to Checkout.
-                  stripe.redirectToCheckout({
-                    items: [{sku: 'sku_H7IzwIEzlIgqWY', quantity: 1}],
-
-                    // Do not rely on the redirect to the successUrl for fulfilling
-                    // purchases, customers may not always reach the success_url after
-                    // a successful payment.
-                    // Instead use one of the strategies described in
-                    // https://stripe.com/docs/payments/checkout/fulfillment
-                    successUrl: 'https://your-website.com/success',
-                    cancelUrl: 'https://your-website.com/canceled',
-                  })
-                  .then(function (result) {
-                    if (result.error) {
-                      // If `redirectToCheckout` fails due to a browser or network
-                      // error, display the localized error message to your customer.
-                      var displayError = document.getElementById('error-message');
-                      displayError.textContent = result.error.message;
-                    }
-                  });
-                });
-              })();
-              </script>
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
             <h2 class="sub-header">Unit Metrics</h2>
             <div class="col-sm-3 text-center">
               <div class="panel panel-success">
@@ -240,7 +211,7 @@
               </div>
 
             </div>
-
+ -->
         </div>
       </div>
     </div>
@@ -253,6 +224,37 @@
     <script src="assets/js/docs.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+   <script>
+                (function() {
+                  var stripe = Stripe('pk_test_M2H9kB3p8bVuGejFYA8sp0GQ00B7diSyN8');
+
+                  var checkoutButton = document.getElementById('checkout-button-sku_H7IzwIEzlIgqWY');
+                  checkoutButton.addEventListener('click', function () {
+                    // When the customer clicks on the button, redirect
+                    // them to Checkout.
+                    stripe.redirectToCheckout({
+                      items: [{sku: 'sku_H7IzwIEzlIgqWY', quantity: 1}],
+
+                      // Do not rely on the redirect to the successUrl for fulfilling
+                      // purchases, customers may not always reach the success_url after
+                      // a successful payment.
+                      // Instead use one of the strategies described in
+                      // https://stripe.com/docs/payments/checkout/fulfillment
+                      successUrl: 'http://localhost:4242/success.html',
+                      cancelUrl: 'https://your-website.com/canceled',
+                    })
+                    .then(function (result) {
+                      if (result.error) {
+                        // If `redirectToCheckout` fails due to a browser or network
+                        // error, display the localized error message to your customer.
+                        var displayError = document.getElementById('error-message');
+                        displayError.textContent = result.error.message;
+                      }
+                    });
+                  });
+                })();
+      </script>
+
     <script>
 
     var doughnutData = [
